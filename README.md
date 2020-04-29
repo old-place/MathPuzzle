@@ -1,1 +1,1 @@
-# MathPuzzle
+# 数学パズル
