@@ -6,7 +6,7 @@
 
     次に別の人が、３番目のカードから２マイおきにカードを裏返していきます
 （裏向きのカードは表を向き、表を向いているカードは裏返されます）。
-また、別の人が４番目のかーだから３枚おきにカードを裏返していきます。
+また、別の人が４番目のカードから３枚おきにカードを裏返していきます。
 
     このようにn番目のカードから n-1枚おきにカードを裏返す操作を
 どのカードの向きも変わらなくなるまで続けたとします。
@@ -35,16 +35,17 @@ def solve_q03():
                 cards[idx] = not is_obverse
         num += 1
 
-    # 裏向きのカードのリスト
-    reverse_card_list = []
 
-    # カードの表裏を全て確認し、裏向きのカードの数をリストに追加
-    for idx, is_obverse in enumerate(cards):
-        if not is_obverse:
-            number = idx + 1
-            reverse_card_list.append(number)
+    # 裏のカードのリストを返す ※１
+    return [i+1 for i, is_obverse in enumerate(cards) if not is_obverse]
 
-    return reverse_card_list
+    #  ※１（別解）
+    # reverse_card_list = []
+    # for idx, is_obverse in enumerate(cards):
+    #     if not is_obverse:
+    #         number = idx + 1
+    #         reverse_card_list.append(number)
+    # return reverse_card_list
 
 
 if __name__ == '__main__':
