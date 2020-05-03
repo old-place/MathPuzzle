@@ -15,55 +15,55 @@ n = 100,  m = 5 のときの回数を求めてください。
 from typing import List
 
 def solve_q04(n: int, m:int):
-	"""
-	Args:
-		n :int 棒の長さ
-		m :int 人数
-	Returns:
-		None
-	"""
-	length = n # 棒の長さ
-	people_num = m # 人数
-	count = 0 # かかった回数
+    """
+    Args:
+        n :int 棒の長さ
+        m :int 人数
+    Returns:
+        None
+    """
+    length = n # 棒の長さ
+    people_num = m # 人数
+    count = 0 # かかった回数
 
-	# 棒の長さのリスト
-	bars = [length]
+    # 棒の長さのリスト
+    bars = [length]
 
-	def cut(bars: List[int], num_people: int):
-		""" 棒の中で長さが最大のものを２分割する """
-		nonlocal count
+    def cut(bars: List[int], num_people: int):
+        """ 棒の中で長さが最大のものを２分割する """
+        nonlocal count
 
-		# 棒の数と人数で少ない方の数だけ１度に処理する
-		for _ in range(min(len(bars), num_people)):
-			# 棒のリストの中で長さが最大のものを取り出す
-			idx = bars.index(max(bars))
-			l = bars.pop(idx)
+        # 棒の数と人数で少ない方の数だけ１度に処理する
+        for _ in range(min(len(bars), num_people)):
+            # 棒のリストの中で長さが最大のものを取り出す
+            idx = bars.index(max(bars))
+            l = bars.pop(idx)
 
-			# 取り出した棒を半分に切り分けて、リストに追加
-			# 偶数の場合
-			if l % 2 == 0:
-				bars.append(l/2)
-				bars.append(l/2)
-			# 奇数の場合
-			else:
-				left = int(l/2)
-				right = l - left
-				bars.append(left)
-				bars.append(right)
-		count += 1
-		return bars
+            # 取り出した棒を半分に切り分けて、リストに追加
+            # 偶数の場合
+            if l % 2 == 0:
+                bars.append(l/2)
+                bars.append(l/2)
+            # 奇数の場合
+            else:
+                left = int(l/2)
+                right = l - left
+                bars.append(left)
+                bars.append(right)
+        count += 1
+        return bars
 
 
-	# 全て１になるまで実行
-	while len(bars) < length:
-		bars = cut(bars, people_num)
+    # 全て１になるまで実行
+    while len(bars) < length:
+        bars = cut(bars, people_num)
 
-	# 答え
-	print(f'{n}cm {m}人 の場合 {count}回')
+    # 答え
+    print(f'{n}cm {m}人 の場合 {count}回')
 
 
 
 if __name__ == "__main__":
-	solve_q04(n=8,  m=3)
-	solve_q04(n=20,  m=3)
-	solve_q04(n=100, m=5)
+    solve_q04(n=8,  m=3)
+    solve_q04(n=20,  m=3)
+    solve_q04(n=100, m=5)
